@@ -24,16 +24,15 @@ def getwiki(s):
         return wikitext2
 
     except Exception as e:
-        return 'В Wiki нет инфы по данному слов'
+        return 'Can\'t find it'
 
 
-# Функция, обрабатывающая команду /start
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
-    bot.send_message(m.chat.id, 'Отправьте мне любое слово, и я найду его значение на Wikipedia')
-# Получение сообщений от юзера
+    bot.send_message(m.chat.id, 'Send me any word, I will find it from Wikipedia')
+
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
     bot.send_message(message.chat.id, getwiki(message.text))
-# Запускаем бота
+
 bot.polling(none_stop=True, interval=0)
